@@ -22,11 +22,22 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const editTodo = (id, newText) => {
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo)),
+    );
+  };
+
   return (
     <div className="App">
       <h1>Todo List</h1>
       <TodoForm onAdd={addTodo} />
-      <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+      <TodoList
+        todos={todos}
+        onToggle={toggleTodo}
+        onDelete={deleteTodo}
+        onEdit={editTodo}
+      />
     </div>
   );
 }
