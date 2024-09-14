@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import MyButtons from '../UI/buttons/MyButtons';
+import MyInputs from '../UI/inputs/MyInputs';
 
 const TodoForm = ({ onAdd }) => {
   const [input, setInput] = useState('');
@@ -11,14 +13,14 @@ const TodoForm = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form onSubmit={handleSubmit} className="TodoForm">
+      <MyInputs
         type="text"
         placeholder="Add a new todo"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit">Add</button>
+      <MyButtons type="add">Add</MyButtons>
     </form>
   );
 };

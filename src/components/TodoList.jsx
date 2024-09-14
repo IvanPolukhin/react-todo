@@ -3,10 +3,11 @@ import TodoItem from './TodoItem';
 
 const TodoList = ({ todos, onToggle, onDelete, onEdit }) => {
   return (
-    <div>
-      {todos.map((todo) => (
+    <div className="TodoList">
+      {todos.map((todo, index) => (
         <TodoItem
           key={todo.id}
+          index={index + 1}
           todo={todo}
           onToggle={onToggle}
           onDelete={onDelete}

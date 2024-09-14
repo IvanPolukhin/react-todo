@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import MyButtons from '../UI/buttons/MyButtons';
 
-const TodoItem = ({ todo, onToggle, onDelete, onEdit }) => {
+const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newText, setNewText] = useState(todo.text);
 
@@ -19,27 +20,45 @@ const TodoItem = ({ todo, onToggle, onDelete, onEdit }) => {
   };
 
   return (
-    <div>
-      <input
-        type="checkbox"
-        checked={todo.completed}
-        onChange={() => onToggle(todo.id)}
-      />
+    <div className="TodoItem">
+      <div className="checkbox-container">
+        <div>{index}. </div>
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => onToggle(todo.id)}
+        />
+      </div>
+
       {isEditing ? (
-        <div>
+        <div className="edit-container">
           <input
             type="text"
             value={newText}
             onChange={(e) => setNewText(e.target.value)}
           />
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <div className="button-group">
+            <MyButtons type="save" onClick={handleSave}>
+              Save
+            </MyButtons>
+            <MyButtons type="cancel" onClick={handleCancel}>
+              Cancel
+            </MyButtons>
+          </div>
         </div>
       ) : (
         <span>{todo.text}</span>
       )}
-      <button onClick={() => onDelete(todo.id)}>Delete</button>
-      {!isEditing && <button onClick={handleEdit}>Edit</button>}
+      {!isEditing && (
+        <div className="button-group">
+          <MyButtons type="edit" onClick={handleEdit}>
+            Edit
+          </MyButtons>
+          <MyButtons type="delete" onClick={() => onDelete(todo.id)}>
+            Delete
+          </MyButtons>
+        </div>
+      )}
     </div>
   );
 };

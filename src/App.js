@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
-import './styles/App.css';
+import React, { useState, useEffect } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import './styles/App.css';
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      try {
+        setTodos(JSON.parse(storedTodos));
+      } catch (error) {
+        console.error('Error when loading data from localStorage:', error);
+      }
+    }
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }, [todos, isLoaded]);
 
   const addTodo = (text) => {
     setTodos([...todos, { id: Date.now(), text, completed: false }]);
