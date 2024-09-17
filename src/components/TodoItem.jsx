@@ -47,7 +47,7 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
           </div>
         </div>
       ) : (
-        <span>{todo.text}</span>
+        <span className={todo.completed ? 'completed' : ''}>{todo.text}</span>
       )}
       {!isEditing && (
         <div className="button-group">

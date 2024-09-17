@@ -55,7 +55,14 @@
   padding-left: 30px;
   padding-right: 140px;
   overflow: hidden;
+  white-space: pre-wrap;
   word-wrap: break-word;
+  transition: color 0.3s ease;
+}
+
+.TodoItem .completed {
+  text-decoration: line-through;
+  color: grey;
 }
 
 .TodoItem input[type='text'] {
