@@ -6,6 +6,7 @@ import './styles/App.css';
 function App() {
   const [todos, setTodos] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos');
@@ -47,12 +48,23 @@ function App() {
     );
   };
 
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === 'completed') return todo.completed;
+    if (filter === 'incomplete') return !todo.completed;
+    return true;
+  });
+
   return (
     <div className="App">
       <h1>Todo List</h1>
       <TodoForm onAdd={addTodo} />
+      <div className="filter-buttons">
+        <button onClick={() => setFilter('all')}>all</button>
+        <button onClick={() => setFilter('completed')}>Completed</button>
+        <button onClick={() => setFilter('incomplete')}>Incomplete</button>
+      </div>
       <TodoList
-        todos={todos}
+        todos={filteredTodos}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
         onEdit={editTodo}
