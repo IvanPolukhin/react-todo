@@ -58,10 +58,17 @@ function App() {
     <div className="App">
       <h1>Todo List</h1>
       <TodoForm onAdd={addTodo} />
-      <div className="filter-buttons">
-        <button onClick={() => setFilter('all')}>all</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
-        <button onClick={() => setFilter('incomplete')}>Incomplete</button>
+      <div className="filter-dropdown">
+        <label htmlFor="filter">Filter tasks: </label>
+        <select
+          id="filter"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="incomplete">Incompleted</option>
+        </select>
       </div>
       <TodoList
         todos={filteredTodos}
