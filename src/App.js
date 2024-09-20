@@ -7,6 +7,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [filter, setFilter] = useState('all');
+  const [sortOrder, setSortOrder] = useState('date');
 
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos');
@@ -54,6 +55,19 @@ function App() {
     return true;
   });
 
+  const sortedTodos = [...filteredTodos].sort((a, b) => {
+    const dateA = a.date ? new Date(a.date) : new Date();
+    const dateB = b.date ? new Date(b.date) : new Date();
+
+    if (sortOrder === 'date') {
+      return dateA - dateB;
+    }
+    if (sortOrder === 'completed') {
+      return a.completed === b.completed ? 0 : a.completed ? 1 : -1;
+    }
+    return 0;
+  });
+
   return (
     <div className="App">
       <h1>Todo List</h1>
@@ -70,8 +84,19 @@ function App() {
           <option value="incomplete">Incompleted</option>
         </select>
       </div>
+      <div className="sort-dropdown">
+        <label htmlFor="sort">Sort Tasks:</label>
+        <select
+          id="sort"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="date">By add date</option>
+          <option value="completed">By execution status</option>
+        </select>
+      </div>
       <TodoList
-        todos={filteredTodos}
+        todos={sortedTodos}
         onToggle={toggleTodo}
         onDelete={deleteTodo}
         onEdit={editTodo}
