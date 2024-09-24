@@ -3,12 +3,16 @@ import MyButtons from '../UI/buttons/MyButtons';
 import MyInputs from '../UI/inputs/MyInputs';
 
 const TodoForm = ({ onAdd }) => {
-  const [input, setInput] = useState('');
+  const [title, setTitle] = useState('');
+  const [text, setText] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input) {
-      onAdd(input);
-      setInput('');
+
+    if (title && text) {
+      onAdd(title, text);
+      setTitle('');
+      setText('');
     }
   };
 
@@ -16,9 +20,15 @@ const TodoForm = ({ onAdd }) => {
     <form onSubmit={handleSubmit} className="TodoForm">
       <MyInputs
         type="text"
-        placeholder="Add a new todo"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
+        placeholder="Add task title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <MyInputs
+        type="text"
+        placeholder="Add task description"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
       <MyButtons type="add">Add</MyButtons>
     </form>

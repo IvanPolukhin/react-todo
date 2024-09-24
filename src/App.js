@@ -27,8 +27,8 @@ function App() {
     }
   }, [todos, isLoaded]);
 
-  const addTodo = (text) => {
-    setTodos([...todos, { id: Date.now(), text, completed: false }]);
+  const addTodo = (title, text) => {
+    setTodos([...todos, { id: Date.now(), title, text, completed: false }]);
   };
 
   const toggleTodo = (id) => {
@@ -43,9 +43,11 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const editTodo = (id, newText) => {
+  const editTodo = (id, newTitle, newText) => {
     setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo)),
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, title: newTitle, text: newText } : todo,
+      ),
     );
   };
 

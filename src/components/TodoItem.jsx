@@ -3,6 +3,7 @@ import MyButtons from '../UI/buttons/MyButtons';
 
 const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState(todo.title);
   const [newText, setNewText] = useState(todo.text);
 
   const handleEdit = () => {
@@ -10,12 +11,13 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
   };
 
   const handleSave = () => {
-    onEdit(todo.id, newText);
+    onEdit(todo.id, newTitle, newText);
     setIsEditing(false);
   };
 
   const handleCancel = () => {
     setIsEditing(false);
+    setNewTitle(todo.title);
     setNewText(todo.text);
   };
 
@@ -29,36 +31,48 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
           onChange={() => onToggle(todo.id)}
         />
       </div>
-
       {isEditing ? (
         <div className="edit-container">
           <input
             type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            placeholder="Edit title"
+          />
+          <input
+            type="text"
             value={newText}
             onChange={(e) => setNewText(e.target.value)}
+            placeholder="Edit description"
           />
-          <div className="button-group">
+        </div>
+      ) : (
+        <div className="todo-details">
+          <h4>{todo.title}</h4>
+          <p className={todo.completed ? 'completed' : ''}>{todo.text}</p>
+        </div>
+      )}
+      <div className="button-group">
+        {isEditing ? (
+          <>
             <MyButtons type="save" onClick={handleSave}>
               Save
             </MyButtons>
             <MyButtons type="cancel" onClick={handleCancel}>
               Cancel
             </MyButtons>
-          </div>
-        </div>
-      ) : (
-        <span className={todo.completed ? 'completed' : ''}>{todo.text}</span>
-      )}
-      {!isEditing && (
-        <div className="button-group">
-          <MyButtons type="edit" onClick={handleEdit}>
-            Edit
-          </MyButtons>
-          <MyButtons type="delete" onClick={() => onDelete(todo.id)}>
-            Delete
-          </MyButtons>
-        </div>
-      )}
+          </>
+        ) : (
+          <>
+            <MyButtons type="edit" onClick={handleEdit}>
+              Edit
+            </MyButtons>
+            <MyButtons type="delete" onClick={() => onDelete(todo.id)}>
+              Delete
+            </MyButtons>
+          </>
+        )}
+      </div>
     </div>
   );
 };

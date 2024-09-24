@@ -31,9 +31,13 @@
   margin-bottom: 20px;
 }
 
+.TodoForm MyInputs {
+  margin-right: 10px;
+}
+
 .TodoItem {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -51,9 +55,16 @@
   left: 6px;
 }
 
-.TodoItem span {
+.TodoItem h4 {
   padding-left: 30px;
-  padding-right: 140px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 5px;
+}
+
+.TodoItem p {
+  padding-left: 30px;
   overflow: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -78,11 +89,9 @@
 
 .TodoItem .button-group {
   display: flex;
-  position: absolute;
   gap: 5px;
-  right: 10px;
-  top: 30px;
-  transform: translateY(-50%);
+  margin-top: 10px;
+  align-self: flex-end;
 }
 
 .filter-dropdown {
