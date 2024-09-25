@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import MyButtons from '../UI/buttons/MyButtons';
+import MyButtons from '../../UI/buttons/MyButtons';
+import '../TodoItem/TodoItem.css';
 
 const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);

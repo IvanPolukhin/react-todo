@@ -1,0 +1,58 @@
+.TodoItem {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 10px;
+}
+
+.checkbox-container {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  left: 6px;
+}
+
+.TodoItem h4 {
+  padding-left: 30px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 5px;
+}
+
+.TodoItem p {
+  padding-left: 30px;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  transition: color 0.3s ease;
+}
+
+.TodoItem .completed {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.TodoItem input[type='text'] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 25px;
+}
+
+.TodoItem input[type='checkbox'] {
+  margin-left: 3px;
+}
+
+.TodoItem .button-group {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+  align-self: flex-end;
+}

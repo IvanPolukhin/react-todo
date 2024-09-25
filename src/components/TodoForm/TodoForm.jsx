@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import MyButtons from '../UI/buttons/MyButtons';
-import MyInputs from '../UI/inputs/MyInputs';
+import MyButtons from '../../UI/buttons/MyButtons';
+import MyInputs from '../../UI/inputs/MyInputs';
+import '../TodoForm/TodoForm.css';
 
 const TodoForm = ({ onAdd }) => {
   const [title, setTitle] = useState('');

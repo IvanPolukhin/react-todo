@@ -1,0 +1,9 @@
+.TodoForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
