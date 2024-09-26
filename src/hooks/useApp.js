@@ -18,8 +18,15 @@ const useApp = () => {
   ] = useFilter(todos);
 
   const itemsPage = 3;
-  const [currentItems, currentPage, totalPages, nextPage, prevPage, setPage] =
-    usePagination(sortedTodos, itemsPage);
+  const [
+    currentItems,
+    currentPage,
+    totalPages,
+    nextPage,
+    prevPage,
+    setPage,
+    handlePageClick,
+  ] = usePagination(sortedTodos, itemsPage);
 
   return [
     addTodo,
@@ -42,6 +49,7 @@ const useApp = () => {
     handleFilterChange,
     handleSortOrderChange,
     handleSearchTermChange,
+    handlePageClick,
   ];
 };
 

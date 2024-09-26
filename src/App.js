@@ -28,6 +28,7 @@ function App() {
     handleFilterChange,
     handleSortOrderChange,
     handleSearchTermChange,
+    handlePageClick,
   ] = useApp();
 
   return (
@@ -59,6 +60,7 @@ function App() {
         nextPage={nextPage}
         prevPage={prevPage}
         setPage={setPage}
+        handlePageClick={handlePageClick}
       />
     </div>
   );

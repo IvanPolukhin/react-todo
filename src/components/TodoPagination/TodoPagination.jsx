@@ -6,7 +6,7 @@ const TodoPagination = ({
   totalPages,
   nextPage,
   prevPage,
-  setPage,
+  handlePageClick,
 }) => {
   return (
     <div className="pagination">
@@ -16,7 +16,7 @@ const TodoPagination = ({
       {[...Array(totalPages)].map((_, i) => (
         <button
           key={i}
-          onClick={() => setPage(i + 1)}
+          onClick={() => handlePageClick(i + 1)}
           className={currentPage === i + 1 ? 'active' : ''}
         >
           {i + 1}

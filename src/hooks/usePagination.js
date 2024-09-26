@@ -8,6 +8,11 @@ export const usePagination = (items, itemsPage) => {
     (currentPage - 1) * itemsPage,
     currentPage * itemsPage,
   );
+
+  const handlePageClick = (page) => {
+    setCurrentPage(Math.min(Math.max(page, 1), totalPages));
+  };
+
   const nextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
@@ -24,7 +29,15 @@ export const usePagination = (items, itemsPage) => {
     }
   };
 
-  return [currentItems, currentPage, totalPages, nextPage, prevPage, setPage];
+  return [
+    currentItems,
+    currentPage,
+    totalPages,
+    nextPage,
+    prevPage,
+    setPage,
+    handlePageClick,
+  ];
 };
 
 export default usePagination;
