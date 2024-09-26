@@ -1,13 +1,20 @@
 import React from 'react';
 import TodoItem from '../TodoItem/TodoItem';
 
-const TodoList = ({ todos, onToggle, onDelete, onEdit }) => {
+const TodoList = ({
+  todos,
+  currentPage,
+  itemsPage,
+  onToggle,
+  onDelete,
+  onEdit,
+}) => {
   return (
     <div className="TodoList">
       {todos.map((todo, index) => (
         <TodoItem
           key={todo.id}
-          index={index + 1}
+          index={(currentPage - 1) * itemsPage + index + 1}
           todo={todo}
           onToggle={onToggle}
           onDelete={onDelete}

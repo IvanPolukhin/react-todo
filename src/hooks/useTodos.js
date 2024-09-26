@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 const useTodos = () => {
   const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos');
@@ -12,11 +13,14 @@ const useTodos = () => {
         console.error('Error when loading data from localStorage:', error);
       }
     }
+    setIsLoading(true);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    if (isLoading) {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }, [todos, isLoading]);
 
   const addTodo = (title, text) => {
     setTodos([...todos, { id: Date.now(), title, text, completed: false }]);
