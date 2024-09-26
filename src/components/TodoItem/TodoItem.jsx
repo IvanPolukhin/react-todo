@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MyButtons from '../../UI/buttons/MyButtons';
+import useTodoItem from '../../hooks/useTodoItem';
 import '../TodoItem/TodoItem.css';
 
 const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState(todo.title);
-  const [newText, setNewText] = useState(todo.text);
-
-  const handleEdit = () => {
-    setIsEditing(true);
-  };
-
-  const handleSave = () => {
-    onEdit(todo.id, newTitle, newText);
-    setIsEditing(false);
-  };
-
-  const handleCancel = () => {
-    setIsEditing(false);
-    setNewTitle(todo.title);
-    setNewText(todo.text);
-  };
+  const [
+    isEditing,
+    newTitle,
+    setNewTitle,
+    newText,
+    setNewText,
+    handleEdit,
+    handleSave,
+    handleCancel,
+  ] = useTodoItem(todo, onEdit);
 
   return (
     <div className="TodoItem">
@@ -32,27 +25,30 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
           onChange={() => onToggle(todo.id)}
         />
       </div>
-      {isEditing ? (
-        <div className="edit-container">
-          <input
-            type="text"
-            value={newTitle}
-            onChange={(e) => setNewTitle(e.target.value)}
-            placeholder="Edit title"
-          />
-          <input
-            type="text"
-            value={newText}
-            onChange={(e) => setNewText(e.target.value)}
-            placeholder="Edit description"
-          />
-        </div>
-      ) : (
-        <div className="todo-details">
-          <h4>{todo.title}</h4>
-          <p className={todo.completed ? 'completed' : ''}>{todo.text}</p>
-        </div>
-      )}
+      <div className={isEditing ? 'edit-container' : 'todo-details'}>
+        {isEditing ? (
+          <>
+            <input
+              type="text"
+              value={newTitle}
+              onChange={(e) => setNewTitle(e.target.value)}
+              placeholder="Edit title"
+            />
+            <input
+              type="text"
+              value={newText}
+              onChange={(e) => setNewText(e.target.value)}
+              placeholder="Edit description"
+            />
+          </>
+        ) : (
+          <>
+            <h4>{todo.title}</h4>
+            <p className={todo.completed ? 'completed' : ''}>{todo.text}</p>
+          </>
+        )}
+      </div>
+
       <div className="button-group">
         {isEditing ? (
           <>

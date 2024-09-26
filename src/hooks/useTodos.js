@@ -1,24 +1,21 @@
 import { useState, useEffect } from 'react';
+import { LOCAL_STORAGE_KEYS } from '../assets/keys';
 
 const useTodos = () => {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const storedTodos = localStorage.getItem('todos');
+    const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEYS);
     if (storedTodos) {
-      try {
-        setTodos(JSON.parse(storedTodos));
-      } catch (error) {
-        console.error('Error when loading data from localStorage:', error);
-      }
+      setTodos(JSON.parse(storedTodos));
     }
     setIsLoading(true);
   }, []);
 
   useEffect(() => {
     if (isLoading) {
-      localStorage.setItem('todos', JSON.stringify(todos));
+      localStorage.setItem(LOCAL_STORAGE_KEYS, JSON.stringify(todos));
     }
   }, [todos, isLoading]);
 

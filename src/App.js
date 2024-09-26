@@ -3,26 +3,32 @@ import TodoForm from './components/TodoForm/TodoForm';
 import TodoList from './components/TodoList/TodoList';
 import TodoFilter from './components/TodoFilter/TodoFilter';
 import TodoPagination from './components/TodoPagination/TodoPagination';
-import useTodos from './hooks/useTodos';
-import useFilter from './hooks/useFilter';
-import usePagination from './hooks/usePagination';
+import useApp from './hooks/useApp';
 import './styles/App.css';
 
 function App() {
-  const [todos, addTodo, toggleTodo, deleteTodo, editTodo] = useTodos();
   const [
-    sortedTodos,
+    addTodo,
+    toggleTodo,
+    deleteTodo,
+    editTodo,
     filter,
     setFilter,
     sortOrder,
     setSortOrder,
     searchTerm,
     setSearchTerm,
-  ] = useFilter(todos);
-
-  const itemsPage = 3;
-  const [currentItems, currentPage, totalPages, nextPage, prevPage, setPage] =
-    usePagination(sortedTodos, itemsPage);
+    currentItems,
+    currentPage,
+    totalPages,
+    nextPage,
+    prevPage,
+    setPage,
+    itemsPage,
+    handleFilterChange,
+    handleSortOrderChange,
+    handleSearchTermChange,
+  ] = useApp();
 
   return (
     <div className="App">
@@ -35,6 +41,9 @@ function App() {
         setSortOrder={setSortOrder}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        handleFilterChange={handleFilterChange}
+        handleSortOrderChange={handleSortOrderChange}
+        handleSearchTermChange={handleSearchTermChange}
       />
       <TodoList
         todos={currentItems}

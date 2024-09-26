@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import cl from '../inputs/myInputs.module.css';
 
-const MyInputs = React.forwardRef((props, ref) => {
+const MyInputs = forwardRef((props, ref) => {
   return <input ref={ref} className={cl.input} {...props} />;
 });
 
