@@ -1,0 +1,36 @@
+.filter-dropdown {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-dropdown label {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.filter-dropdown select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sort-dropdown label {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.sort-dropdown select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
