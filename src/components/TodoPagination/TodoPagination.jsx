@@ -13,15 +13,21 @@ const TodoPagination = ({
       <button onClick={prevPage} disabled={currentPage === 1}>
         Prev
       </button>
-      {[...Array(totalPages)].map((_, i) => (
-        <button
-          key={i}
-          onClick={() => handlePageClick(i + 1)}
-          className={currentPage === i + 1 ? 'active' : ''}
-        >
-          {i + 1}
-        </button>
-      ))}
+      {Array.from({ length: totalPages }, (_, i) => {
+        const page = i + 1;
+        const isActive = currentPage === page;
+
+        return (
+          <button
+            key={page}
+            onClick={() => handlePageClick(page)}
+            className={`pagination-btn ${isActive ? 'active' : ''}`}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {page}
+          </button>
+        );
+      })}
       <button onClick={nextPage} disabled={currentPage === totalPages}>
         Next
       </button>
