@@ -43,8 +43,10 @@ const TodoItem = ({ todo, index, onToggle, onDelete, onEdit }) => {
           </>
         ) : (
           <>
-            <h4>{todo.title}</h4>
-            <p className={todo.completed ? 'completed' : ''}>{todo.text}</p>
+            <div className={todo.completed ? 'completed' : ''}>
+              <h4>{todo.title}</h4>
+              <p>{todo.text}</p>
+            </div>
           </>
         )}
       </div>
