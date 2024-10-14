@@ -5,6 +5,7 @@ import TodoFilter from './components/TodoFilter/TodoFilter';
 import TodoPagination from './components/TodoPagination/TodoPagination';
 import useApp from './hooks/useApp';
 import './styles/App.css';
+import './assets/tailwind.css';
 
 function App() {
   const [
