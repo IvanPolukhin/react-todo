@@ -3,18 +3,18 @@ import { LOCAL_STORAGE_KEYS } from '../assets/keys';
 
 const useTodos = () => {
   const [todos, setTodos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const storedTodos = localStorage.getItem(LOCAL_STORAGE_KEYS);
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
     }
-    setIsLoading(true);
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
-    if (isLoading) {
+    if (!isLoading) {
       localStorage.setItem(LOCAL_STORAGE_KEYS, JSON.stringify(todos));
     }
   }, [todos, isLoading]);
