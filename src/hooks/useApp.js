@@ -1,6 +1,7 @@
 import useTodos from './useTodos';
 import useFilter from './useFilter';
 import usePagination from './usePagination';
+import useTheme from './useTheme';
 
 const useApp = () => {
   const [todos, addTodo, toggleTodo, deleteTodo, editTodo] = useTodos();
@@ -28,6 +29,8 @@ const useApp = () => {
     handlePageClick,
   ] = usePagination(sortedTodos, itemsPage);
 
+  const { isDarkMode, toggleTheme } = useTheme();
+
   return [
     addTodo,
     toggleTodo,
@@ -50,6 +53,8 @@ const useApp = () => {
     handleSortOrderChange,
     handleSearchTermChange,
     handlePageClick,
+    isDarkMode,
+    toggleTheme,
   ];
 };
 
